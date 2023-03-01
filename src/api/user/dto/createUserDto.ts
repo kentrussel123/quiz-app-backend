@@ -1,16 +1,9 @@
-import { IsString, IsNotEmpty, IsEmail, IsEnum, IsNumberString } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail, IsEnum} from 'class-validator';
 
 export enum Gender {
   MALE = 'male',
   FEMALE = 'female',
   OTHER = 'other'
-}
-
-export enum Course {
-  BSIT = 'bsit',
-  BSCS = 'bscs',
-  BSCpE = 'bscpe',
-  BSCE = 'bsce'
 }
 
 export class CreateUserDto {
@@ -32,10 +25,6 @@ export class CreateUserDto {
     @IsEnum(Gender)
     gender: Gender;
 
-    @IsEnum(Course)
-    course: Course;
-
-    @IsNumberString()
-    @IsNotEmpty()
-    yearLevel: number;
+    @IsString()
+    course: string;
 }

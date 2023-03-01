@@ -22,9 +22,6 @@ export class User {
 
   @Prop({ required: true })
   gender: string;
-
-  @Prop({ required: true })
-  year: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
