@@ -18,7 +18,7 @@ export class User {
   password: string;
 
   @Prop({ required: true })
-  course: string;
+  userType: string;
 
   @Prop({ required: true })
   gender: string;

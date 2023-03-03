@@ -26,5 +26,5 @@ export class CreateUserDto {
     gender: Gender;
 
     @IsString()
-    course: string;
+    userType
 }

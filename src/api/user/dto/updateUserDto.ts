@@ -20,5 +20,5 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     gender?: Gender;
 
     @IsString()
-    course?: string;
+    userType?: string;
 }

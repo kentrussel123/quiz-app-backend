@@ -1,16 +1,27 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Res } from '@nestjs/common';
 import { CreateUserDto } from './dto/createUserDto';
 import { UpdateUserDto } from './dto/updateUserDto';
 import { UserService } from './user.service';
+import { Response } from 'express';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+    @Post('/login')
+    async LoginUser (@Body() req:any, @Res()res:Response){
+        const user = await this.userService.getUserByEmail(req.email)
+        if(req.password !== user.password){
+            return res.status(400).json({message: 'Your email and password does not match! Please try again'})
+        }
+        return res.status(200).json({message: 'successfully logged in', user})
+    }
+
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto) {
+  async createUser(@Body() createUserDto: CreateUserDto, @Res() res:Response) {
     const user = await this.userService.createUser(createUserDto);
-    return { message: 'User created successfully', user };
+    console.log()
+    return res.status(200).json({ message: 'User created successfully', user });
   }
 
   @Get()
